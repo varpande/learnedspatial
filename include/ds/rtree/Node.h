@@ -11,7 +11,7 @@ namespace STRTree {
 template<uint32_t MAX_ENTRY_COUNT>
 class Node {
  public:
-  bool if_leaf;
+  bool is_leaf_node;
   uint32_t entry_count;
   uint32_t bounds_count;
   std::array<Node<MAX_ENTRY_COUNT> *, MAX_ENTRY_COUNT> nodes; // Contains ids when is_leaf
@@ -20,7 +20,7 @@ class Node {
   Node(int max_entry, bool leaf) {
     entry_count = 0;
     bounds_count = 0;
-    if_leaf = leaf;
+    is_leaf_node = leaf;
   }
 
   void inner_add_entry(Node *n, double minx, double miny, double maxx, double maxy) {
@@ -47,7 +47,7 @@ class Node {
     bounds_count += 4;
   }
 
-  bool is_leaf() { return (if_leaf); }
+  bool is_leaf() { return (is_leaf_node); }
 
   double get_minx() {
     double minx = std::numeric_limits<double>::max();
