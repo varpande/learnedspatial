@@ -64,6 +64,9 @@
 #define PARTITION_SIZE_GRIDS 1000
 #endif
 // ---------------------------------------------------------------------------------------------------------------------
+// TODO currently stats like avg_number_of_intersected_partitions, avg_points_scanned_in_partition etc. have been
+// removed, add them later in a cleaner way. This will help people.
+// ---------------------------------------------------------------------------------------------------------------------
 string g_points_file;
 string g_rectangles_file;
 // ---------------------------------------------------------------------------------------------------------------------
@@ -153,14 +156,7 @@ void BenchmarkCount(const vector<Geography::Point> &points,
     }
   });
 
-//	double total_scanned_points_count = ((double)(actual_scanned_points_count + wrongly_scanned_points_count) / (double) rectangles.size());
   double result_count = (((double) count) / (double) rectangles.size());
-//	double scan_overhead = total_scanned_points_count / result_count;
-//	double scan_overhead = ((double)(actual_scanned_points_count + wrongly_scanned_points_count) / (double) rectangles.size());
-//	double scan_overhead = ((double)(actual_scanned_points_count / (double) rectangles.size()) / (double)result_count);
-//	double avg_points = ((double) points.size()) / (double) number_of_cells;
-
-//	double cells = ((double) cells_intersected) / (double) rectangles.size();
 
 #ifdef PRINT_STATS
   double total_scanned_points_count = ((double)(actual_scanned_points_count + wrongly_scanned_points_count) / (double) rectangles.size());
@@ -179,7 +175,6 @@ void BenchmarkCount(const vector<Geography::Point> &points,
         << " build(ms): " << (build_ns / 1000 / 1000)
         << std::fixed
         << " result_count: " << result_count
-//		  << " average_points: " << avg_points
         << " ns/lookup: " << run_ns / rectangles.size()
 #if PRINT_STATS
         << " num_cells: " << number_of_cells
@@ -190,10 +185,6 @@ void BenchmarkCount(const vector<Geography::Point> &points,
         << " cells_intersected: " << cells
 #endif
 		  << endl;
-
-//	cout << "wrongly_scanned_points_count:   " << wrongly_scanned_points_count / rectangles.size() << endl;
-//	cout << "actual_scanned_points_count:    " << actual_scanned_points_count / rectangles.size() << endl;
-//	cout << "total_scanned_points_count:     " << (actual_scanned_points_count + wrongly_scanned_points_count) / rectangles.size() << endl;
 
 	cout << "------------------------------------------------------------------------\n";
    //@formatter:on
