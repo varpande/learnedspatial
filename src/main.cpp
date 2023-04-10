@@ -52,6 +52,11 @@
 #error Invalid BENCHMARK_TYPE, please use: { "VALIDATE_MATERIALIZE", "VALIDATE_COUNT", "BENCHMARK_MATERIALIZE", "BENCHMARK_COUNT", "BENCHMARK_DISTANCE", "BENCHMARK_POINT", "BENCHMARK_JOIN"}
 #endif
 // ---------------------------------------------------------------------------------------------------------------------
+// the default partition size
+// partition_size signify the size of the partition for each partitioning technique
+// this parameter has to be trained for each partitioning technique for each workload
+// i.e., this differs for each workload and usecase
+// TODO add a yaml file for the optimal partition size we found for each workload?
 #ifndef PARTITION_SIZE
 #define PARTITION_SIZE 1000
 #endif
